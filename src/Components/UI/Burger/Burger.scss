@@ -1,0 +1,127 @@
+$dist: 8px;
+
+@mixin burger{
+  transition: 1s;
+  border-radius: 5px;
+  height: 4px;
+  display: block;
+  background: white;
+}
+
+@keyframes  burger-top{
+  50%{
+    top: 0px;
+    transform: rotate(0deg);
+  }
+  100%{
+    top: 0px;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes  burger-bottom{
+  50%{
+    top: 0px;
+    transform: rotate(0deg);
+  }
+  100%{
+    top: 0px;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes burger-top-close {
+  0%{
+    transform: rotate(-45deg);
+    top: 0px;
+  }
+  50%{
+    top: 0px;
+    transform: rotate(0deg);
+  }
+  100%{
+    top: -$dist;
+    transform: rotate(0deg);
+  }
+}
+@keyframes burger-bottom-close {
+  0%{
+    transform: rotate(45deg);
+    top: 0px;
+  }
+  50%{
+    top: 0px;
+    transform: rotate(0deg);
+  }
+  100%{
+    top: $dist;
+    transform: rotate(0deg);
+  }
+}
+
+
+.burger span::before,
+.burger span::after{
+  @include burger;
+  content: '';
+  width: 100%;
+  position: absolute;
+}
+
+.burger{
+  border: 3px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  min-width: 35px;
+  min-height: 35px;
+  width: 35px;
+  height: 35px;
+  span{
+    @include burger;
+    position: relative;
+    width: 80%;
+  }
+}
+
+
+
+
+.burger span::before{
+  top: -$dist;
+}
+.burger span::after{
+  top: $dist;
+}
+
+.burger--open{
+  span::before{
+    animation: burger-top 1s forwards;
+  }
+  span::after{
+    animation: burger-bottom 1s forwards;
+  }
+  span{
+    //animation: burger-bottom 1s forwards;
+    background: transparent;
+  }
+}
+
+.burger--close{
+  span::before{
+    animation: burger-top-close 1s forwards;
+  }
+  span::after{
+    animation: burger-bottom-close 1s forwards;
+  }
+}
+
+
+
+
+
+
+
+
+
